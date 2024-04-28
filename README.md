@@ -1,8 +1,8 @@
-###  DATE: 
+###  DATE: 05-04-2024
 
-###  NAME: 
-###  ROLL NO :
-###  DEPARTMENT:
+###  NAME: BALAJEE K.S
+###  ROLL NO :212222080009
+###  DEPARTMENT:MECHANICAL
 # Experiment-no-6-DC-Motor-Speed-Control-Using-Arduino
 ### AIM : To control the speed and the direction of a DC motor using L293D driver ic( H- bridge)
 
@@ -31,8 +31,66 @@ TABLE-01 EXITATION TABLE FOR H BRIDGE
 As shown in the circuit diagram we need only 3 Arduino terminal pins, pin 8 is for the push button which toggles the motor direction of rotation. Pins 9 and 10 are PWM signal outputs, at any time there is only 1 active PWM, this allows us to control the direction as well as the speed by varying the duty cycle of the PWM signal. The active PWM pin decides the motor direction of rotation (one at a time, the other output is logic 0).
 
 ### PROGRAM 
+Normal RPM:
+// C++ code
+//l293D
+const int motorPin1 = 5;//pin 14 of L293
+const int motorPin2 = 6;//pin 10 of L293
+// this will run only one time
+void setup(){
+  //set pins as output
+  pinMode(motorPin1,OUTPUT);
+  pinMode(motorPin2, OUTPUT);
+}
+void loop(){
+  digitalWrite(motorPin1,LOW);
+  delay(2000);
+  digitalWrite(motorPin2,HIGH);
+  delay(2000);
+}
+To Control RPM:
+// C++ code
+//l293D
+
+#define motorIn1  5//pin 14 of L293
+#define motorIn2  6//pin 10 of L293
+// this will run only one time
+void setup(){
+  //set pins as output
+  pinMode(motorIn1,OUTPUT);
+  pinMode(motorIn2, OUTPUT);
+}
+void loop(){
+  //pulse width modulation(pwm)
+  clockwise(0);
+  delay(5000);
+  counterClockwise(50);
+  delay(3000);
+}
+void counterClockwise(int Speed)
+{
+  analogWrite(motorIn1,Speed);
+  analogWrite(motorIn2,0);
+  
+}
+void clockwise(int Speed)
+{
+    analogWrite(motorIn1,0);
+      analogWrite(motorIn2,Speed);
+ //delay(5);
+}
+
+
 
 ### OUTPUT
+circuit diagram:
+
+![image](https://github.com/balajeeakm/Experiment-no-7-DC-Motor-Speed-Control-Using-Arduino/assets/131589871/e05e0eab-b956-4b54-ab6c-a16ab11728e7)
+schematic diagram:
+![image](https://github.com/balajeeakm/Experiment-no-7-DC-Motor-Speed-Control-Using-Arduino/assets/131589871/0524a70a-235c-4d46-9b6d-fbeabce28c05)
+
+
+
 
 ### GRAPH AND TABULATION 
 ![image](https://github.com/vasanthkumarch/Experiment-no-7-DC-Motor-Speed-Control-Using-Arduino/assets/36288975/739cc470-48c8-4873-a730-6319b4afc602)
